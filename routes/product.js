@@ -24,8 +24,9 @@ const {
 
 router.get("/", async (req, res) => {
   const category = req.query.category;
+  const page = req.query.page;
 
-  const products = await getProducts(category);
+  const products = await getProducts(category, page);
   res.status(200).send(products);
 });
 
@@ -60,6 +61,7 @@ router.post("/", async (req, res) => {
 
     res.send(newProduct);
   } catch (error) {
+    console.log(error);
     res.status(400).send({ message: "my komputr borken. hlelp" });
   }
 });
@@ -83,6 +85,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .send(await updateProduct(id, name, description, price, category));
   } catch (error) {
+    console.log(error);
     res.status(400).send({ message: "my komputr borken. hlelp" });
   }
 });
@@ -97,6 +100,7 @@ router.delete("/:id", async (req, res) => {
       message: `${id} has been deleted.`,
     });
   } catch (error) {
+    console.log(error);
     res.status(400).send({ message: "my komputr borken. hlelp" });
   }
 });

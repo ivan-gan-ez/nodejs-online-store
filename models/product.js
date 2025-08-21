@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// declare schema for Movies
+// declare schema for Products
 const productSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: false },

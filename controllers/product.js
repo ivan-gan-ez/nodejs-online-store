@@ -1,6 +1,6 @@
 const Product = require("../models/product");
 
-async function getProducts(category) {
+async function getProducts(category, page = 1, itemsPerPage = 6) {
   // create empty object for filter
   let filter = {};
   // if category exists, then add to filter
@@ -8,7 +8,10 @@ async function getProducts(category) {
     filter.category = category;
   }
 
-  const products = await Product.find(filter).sort({ _id: 1 });
+  const products = await Product.find(filter)
+    .limit(itemsPerPage)
+    .skip((page - 1) * itemsPerPage)
+    .sort({ _id: -1 });
   return products;
 }
 
