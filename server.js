@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -26,6 +28,10 @@ app.get("/", (req, res) => {
 // import all the routers
 const productRouter = require("./routes/product");
 app.use("/products", productRouter);
+
+app.use("/orders", require("./routes/order"));
+
+app.use("/payment", require("./routes/payment"));
 
 app.listen(6789, () => {
   console.log("Server currently running at http://localhost:6789");
