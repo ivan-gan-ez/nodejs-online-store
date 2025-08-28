@@ -5,7 +5,8 @@ const productSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: false },
   price: { type: Number, required: true },
-  category: { type: String, required: true },
+  // creating linkage between product category and category model
+  category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
   image: { type: String, required: false },
 });
 
