@@ -52,12 +52,19 @@ router.post("/", async (req, res) => {
     const description = req.body.description;
     const price = req.body.price;
     const category = req.body.category;
+    const image = req.body.image;
 
     if (!name || !price || !category) {
       return res.status(400).send({ message: "You're missing something." });
     }
 
-    const newProduct = await addProduct(name, description, price, category);
+    const newProduct = await addProduct(
+      name,
+      description,
+      price,
+      category,
+      image
+    );
 
     res.send(newProduct);
   } catch (error) {
@@ -74,6 +81,7 @@ router.put("/:id", async (req, res) => {
     const description = req.body.description;
     const price = req.body.price;
     const category = req.body.category;
+    const image = req.body.image;
 
     if (!name || !price || !category) {
       return res.status(400).send({ message: "You're missing something." });
@@ -83,7 +91,7 @@ router.put("/:id", async (req, res) => {
 
     res
       .status(200)
-      .send(await updateProduct(id, name, description, price, category));
+      .send(await updateProduct(id, name, description, price, category, image));
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: "my komputr borken. hlelp" });

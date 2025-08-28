@@ -26,12 +26,15 @@ app.get("/", (req, res) => {
 });
 
 // import all the routers
-const productRouter = require("./routes/product");
-app.use("/products", productRouter);
-
+app.use("/products", require("./routes/product"));
 app.use("/orders", require("./routes/order"));
-
 app.use("/payment", require("./routes/payment"));
+app.use("/image", require("./routes/image"));
+app.use("/categories", require("./routes/category"));
+
+//set up static path for the uploads folder
+
+app.use("/uploads", express.static("uploads"));
 
 app.listen(6789, () => {
   console.log("Server currently running at http://localhost:6789");
