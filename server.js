@@ -31,6 +31,7 @@ app.use("/orders", require("./routes/order"));
 app.use("/payment", require("./routes/payment"));
 app.use("/image", require("./routes/image"));
 app.use("/categories", require("./routes/category"));
+app.use("/users", require("./routes/user"));
 
 //set up static path for the uploads folder
 
