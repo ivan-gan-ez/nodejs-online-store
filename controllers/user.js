@@ -2,9 +2,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+const getUserbyEmail = async (email) => {
+  return await User.findOne({ email: email });
+};
+
 const login = async (email, password) => {
   // 0. check if email provided is in the system
-  const user = await User.findOne({ email: email });
+  const user = await getUserbyEmail(email);
   // 1. if not exist, throw error
   if (!user) {
     throw new Error("Invalid email or password.");
@@ -78,4 +82,4 @@ const signup = async (name, email, password) => {
   };
 };
 
-module.exports = { login, signup };
+module.exports = { login, signup, getUserbyEmail };

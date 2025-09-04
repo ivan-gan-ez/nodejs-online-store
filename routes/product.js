@@ -12,6 +12,8 @@ const {
   deleteProduct,
 } = require("../controllers/product");
 
+const { isAdmin } = require("../middleware/auth");
+
 /*
   GET /products - all products
   GET /products/[id] - specific product by id
@@ -46,7 +48,7 @@ router.get("/:id", async (req, res) => {
   - category
 */
 
-router.post("/", async (req, res) => {
+router.post("/", isAdmin, async (req, res) => {
   try {
     const name = req.body.name;
     const description = req.body.description;
@@ -75,7 +77,7 @@ router.post("/", async (req, res) => {
 
 // PUT /products/[id] - update product by id
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAdmin, async (req, res) => {
   try {
     const name = req.body.name;
     const description = req.body.description;
@@ -100,7 +102,7 @@ router.put("/:id", async (req, res) => {
 
 // DELETE /products/[id] - delete product by id
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     await deleteProduct(id);
