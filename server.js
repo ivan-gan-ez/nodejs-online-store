@@ -12,7 +12,7 @@ app.use(cors());
 // connect to mongodb with a mongoose
 async function connectToMongoDB() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/store");
+    await mongoose.connect(process.env.MONGODB_URL + "/store");
   } catch (error) {
     console.log("server asleep. sory");
   }
