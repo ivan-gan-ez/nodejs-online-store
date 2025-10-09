@@ -21,17 +21,17 @@ async function connectToMongoDB() {
 // trogger de function
 connectToMongoDB();
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Greetings and salutations!");
 });
 
 // import all the routers
-app.use("/products", require("./routes/product"));
-app.use("/orders", require("./routes/order"));
-app.use("/payment", require("./routes/payment"));
-app.use("/image", require("./routes/image"));
-app.use("/categories", require("./routes/category"));
-app.use("/users", require("./routes/user"));
+app.use("/api/products", require("./routes/product"));
+app.use("/api/orders", require("./routes/order"));
+app.use("/api/payment", require("./routes/payment"));
+app.use("/api/image", require("./routes/image"));
+app.use("/api/categories", require("./routes/category"));
+app.use("/api/users", require("./routes/user"));
 
 //set up static path for the uploads folder
 
